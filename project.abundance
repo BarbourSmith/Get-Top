@@ -56,8 +56,8 @@
         {
             "atomType": "Code",
             "name": "Code",
-            "x": 0.4911504424778761,
-            "y": 0.6531791907514451,
+            "x": 0.5499219968798752,
+            "y": 0.7398843930635838,
             "uniqueID": 1726863411594,
             "ioValues": [
                 {
@@ -67,7 +67,39 @@
             ],
             "description": "Defines a Replicad code block.",
             "codeVersion": 1,
-            "code": "//Inputs:[input1];\n\nconsole.log(\"In code:\");\n\nconsole.log(library[input1].geometry[0].bounds());\n\nlet shape = drawRectangle(5,7);\n\n\nconst newPlane = new Plane().pivot(0, 'Y');\n\n return { geometry: [shape.sketchOnPlane(newPlane).extrude(12)], tags: [],\n      color: '#A3CE5B',\n      plane: newPlane}\n\n\n    /**\n    To Use the Code Atom, enter your inputs to the input list a.e Inputs:[shape, height]\n    If your input is connected to another atom with a replicad geometry you can access its geometry by looking up its ID in your library. a.e library[Input1].geometry[0] \n    Use any replicad available methods to modify your geometry. Learn more about all of the available methods at \n    https://replicad.xyz/docs/introapp/UserGuide.html \n    Return a replicad object that includes geometry, color, tags and plane. \n\n\n    Example Code Atom:\n\n      Inputs:[shape, x];\n\n      let finalShape = library[shape].geometry[0].clone.translate[x,0,0]\n\n      return {geometry: finalShape, color: library[shape].color, plane: library[shape].plane, tags: library[shape].tags }\n\n      - See more examples at _______ \n\n\n    */\n"
+            "code": "//Inputs:[input1];\n\nreturn library[input1].geometry[0].boundingBox.bounds[1][2];\n\n\n    /**\n    To Use the Code Atom, enter your inputs to the input list a.e Inputs:[shape, height]\n    If your input is connected to another atom with a replicad geometry you can access its geometry by looking up its ID in your library. a.e library[Input1].geometry[0] \n    Use any replicad available methods to modify your geometry. Learn more about all of the available methods at \n    https://replicad.xyz/docs/introapp/UserGuide.html \n    Return a replicad object that includes geometry, color, tags and plane. \n\n\n    Example Code Atom:\n\n      Inputs:[shape, x];\n\n      let finalShape = library[shape].geometry[0].clone.translate[x,0,0]\n\n      return {geometry: finalShape, color: library[shape].color, plane: library[shape].plane, tags: library[shape].tags }\n\n      - See more examples at _______ \n\n\n    */\n"
+        },
+        {
+            "atomType": "Circle",
+            "name": "Circle",
+            "x": 0.3634945397815913,
+            "y": 0.21098265895953755,
+            "uniqueID": 1727136904952,
+            "ioValues": [
+                {
+                    "name": "diameter",
+                    "ioValue": 10
+                }
+            ],
+            "description": "Creates a new circle."
+        },
+        {
+            "atomType": "Extrude",
+            "name": "Extrude",
+            "x": 0.625585023400936,
+            "y": 0.3063583815028902,
+            "uniqueID": 1727136918115,
+            "ioValues": [
+                {
+                    "name": "geometry",
+                    "ioValue": 1727136904952
+                },
+                {
+                    "name": "height",
+                    "ioValue": 12.0000001
+                }
+            ],
+            "description": "Extrudes a 2D shape. Input can be negitive. "
         }
     ],
     "allConnectors": [
@@ -84,6 +116,20 @@
             "ap2Primary": false,
             "ap1ID": 1726863395371,
             "ap2ID": 1726863411594
+        },
+        {
+            "ap1Name": "geometry",
+            "ap2Name": "height",
+            "ap2Primary": false,
+            "ap1ID": 1726863411594,
+            "ap2ID": 1727136918115
+        },
+        {
+            "ap1Name": "geometry",
+            "ap2Name": "geometry",
+            "ap2Primary": true,
+            "ap1ID": 1727136904952,
+            "ap2ID": 1727136918115
         }
     ],
     "unitsKey": "MM",
